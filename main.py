@@ -35,6 +35,7 @@ def check_permission():
     if saved_key and saved_key == key:
         return True
     else:
+        print("Wrong Security Key")
         speak("Wrong Security Key")
         return False
 
@@ -55,6 +56,7 @@ def view_password():
             speak("No passwords stored yet.")
         else:
             for account, password in passwords.items():
+                print(f"Account: {account}, Password: {password}")
                 speak(f"Account: {account}, Password: {password}")
     else:
         speak("Access denied. Wrong Security Key.")
@@ -86,7 +88,7 @@ def add_password():
 
     with open(PASSWORDS_FILE, 'w') as file:
         json.dump(passwords, file)
-
+    print(f"Password for account: {account} has been added/updated.")
     speak(f"Password for account: {account} has been added/updated.")
 
 if __name__ == "__main__":
